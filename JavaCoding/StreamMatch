@@ -1,0 +1,25 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+class Main {
+
+    public static void main(String[] args) {
+
+    List<String> matchedList = new ArrayList<String>();
+    matchedList.add("prashanth");
+    matchedList.add("sunny");
+    matchedList.add("prime");
+    matchedList.add("chinnu");
+
+    System.out.println(matchedList);
+    
+    boolean matchedResult = matchedList.stream().anyMatch((s) ->s.startsWith("p"));
+     System.out.println(matchedResult);
+    
+      
+    }
+}

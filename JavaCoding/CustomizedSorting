@@ -1,0 +1,98 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+class Main {
+
+    public static void main(String[] args) {
+
+        // Sort by First Name using Comparator.comparing()
+        ArrayList<Employee1> employees = getUnsortedEmployeeList();
+
+        Comparator<Employee1> compareByFirstName =
+                Comparator.comparing(Employee1::getFirstName);
+
+        List<Employee1> sortedEmployees = employees.stream()
+                .sorted(compareByFirstName)
+                .collect(Collectors.toList());
+
+        System.out.println("Sorted By First Name:");
+
+        sortedEmployees.forEach(System.out::println);
+
+
+        // Sort by Last Name using Lambda
+        ArrayList<Employee1> employeesUsingCompare = getUnsortedEmployeeList();
+
+        List<Employee1> sortedEmployeesByLastName = employeesUsingCompare.stream()
+                .sorted((emp1, emp2) -> emp1.getLastName().compareTo(emp2.getLastName()))
+                .collect(Collectors.toList());
+
+        System.out.println(":::::::::::::::::::::::::::::");
+
+        System.out.println("Sorted By Last Name:");
+
+        sortedEmployeesByLastName.forEach(System.out::println);
+    }
+
+
+    public static ArrayList<Employee1> getUnsortedEmployeeList() {
+
+        ArrayList<Employee1> list = new ArrayList<>();
+
+        list.add(new Employee1(2L, "Lokesh", "Gupta"));
+        list.add(new Employee1(1L, "Alex", "Gussin"));
+        list.add(new Employee1(4L, "Brian", "Sux"));
+        list.add(new Employee1(5L, "Neon", "Piper"));
+        list.add(new Employee1(3L, "David", "Beckham"));
+        list.add(new Employee1(7L, "Alex", "Beckham"));
+        list.add(new Employee1(6L, "Brian", "Suxena"));
+
+        return list;
+    }
+}
+
+
+class Employee1 {
+
+    private long id;
+    private String firstName;
+    private String lastName;
+
+
+    public Employee1(long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Employee1 [id=" + id +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName + "]";
+    }
+}
